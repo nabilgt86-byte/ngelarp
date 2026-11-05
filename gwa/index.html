@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nabil — The Player | Portofolio M. Nabil Rahmadhan</title>
+  <meta name="description" content="Portofolio M. Nabil Rahmadhan — Nabil, The Player.">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body::before {
+      background-image: url('gwa%20profil.jpeg');
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">Nabil<span>.</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Nabil</a></li>
+        <li><a href="../spiderman/spiderman.html">Spider-Man</a></li>
+        <li><a href="../batman/batman.html">Batman</a></li>
+        <li><a href="../kakashi/kakashi.html">Kakashi</a></li>
+        <li><a href="../minato/minato.html">Minato</a></li>
+        <li><a href="../sasuke/sasuke.html">Sasuke</a></li>
+        <li><a href="../reflection.html">Reflection</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="character-layout">
+      <!-- KIRI: Judul & Deskripsi -->
+      <article class="character-content">
+        <span class="eyebrow">The Player</span>
+        <h1>Nabil<span>The Player</span></h1>
+        <hr class="divider">
+        <p>
+          Seseorang yang menemukan kesenangan dalam dunia teknologi dan permainan.
+          Dari dunia digital, ia belajar bahwa setiap level, setiap tantangan, dan
+          setiap kekalahan adalah bagian dari proses menjadi lebih kuat. Ia percaya
+          bahwa kehidupan dapat dipandang seperti sebuah game: selalu ada misi yang
+          harus diselesaikan, skill yang harus ditingkatkan, dan kemenangan yang harus
+          diperjuangkan dengan usaha yang konsisten.
+        </p>
+        <p>
+          Ia juga memiliki ketertarikan besar terhadap teknologi, pemrograman, dan
+          dunia komputer. Ketertarikan tersebut mendorongnya untuk terus belajar,
+          menciptakan, dan menjelajahi hal-hal baru yang dapat membantunya bertumbuh
+          menjadi pribadi yang lebih kreatif, disiplin, dan berdaya saing.
+        </p>
+      </article>
+
+      <!-- KANAN: Foto Profil (pengecualian: statis, tanpa animasi putar) -->
+      <div class="profile-frame">
+        <img src="gwa%20profil.jpeg" alt="Foto profil Nabil">
+        <p class="profile-caption">The Player</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>Copyright © 2026 M. Nabil Rahmadhan. All rights reserved.</footer>
+
+  <a class="side-nav next" href="../spiderman/spiderman.html" aria-label="Halaman selanjutnya: Spider-Man">&rarr;</a>
+
+  <nav class="page-nav" aria-label="Navigasi halaman">
+    <span class="nav-arrow prev disabled" aria-hidden="true"><span class="arrow">&larr;</span><span>Awal</span></span>
+    <a class="nav-arrow next" href="../spiderman/spiderman.html"><span>Spider-Man</span><span class="arrow">&rarr;</span></a>
+  </nav>
+
+  <div class="lightbox" id="profileLightbox" role="dialog" aria-modal="true" aria-label="Gambar profil diperbesar">
+    <button class="lightbox-close" data-close aria-label="Tutup gambar">&times;</button>
+    <figure>
+      <img id="lightboxImg" src="" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+  </div>
+
+  <script>
+    (function () {
+      const frames = document.querySelectorAll(".profile-frame");
+      const lightbox = document.getElementById("profileLightbox");
+      const lightboxImg = document.getElementById("lightboxImg");
+      const lightboxCaption = document.getElementById("lightboxCaption");
+      const closeBtn = lightbox.querySelector("[data-close]");
+
+      function openLightbox(img) {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = img.alt.replace("Foto profil ", "");
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      frames.forEach(function (frame) {
+        const img = frame.querySelector("img");
+        if (!img) return;
+        frame.setAttribute("tabindex", "0");
+        frame.setAttribute("role", "button");
+        frame.setAttribute("aria-label", "Perbesar " + img.alt);
+        frame.addEventListener("click", function () { openLightbox(img); });
+        frame.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openLightbox(img);
+          }
+        });
+      });
+
+      closeBtn.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+      });
+    })();
+  </script>
+
+</body>
+</html>

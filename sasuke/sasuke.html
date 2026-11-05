@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sasuke Uchiha | Portofolio M. Nabil Rahmadhan</title>
+  <meta name="description" content="Sasuke Uchiha — sisi diri yang paling kompleks: pencarian jati diri, ambisi, dan penebusan.">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body::before {
+      background-image: url('sasuuke%20bg.jpeg');
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="../gwa/index.html" class="logo">Nabil<span>.</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="../gwa/index.html">Nabil</a></li>
+        <li><a href="../spiderman/spiderman.html">Spider-Man</a></li>
+        <li><a href="../batman/batman.html">Batman</a></li>
+        <li><a href="../kakashi/kakashi.html">Kakashi</a></li>
+        <li><a href="../minato/minato.html">Minato</a></li>
+        <li><a href="sasuke.html" class="active">Sasuke</a></li>
+        <li><a href="../reflection.html">Reflection</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="character-layout">
+      <article class="character-content">
+        <span class="eyebrow">The Avenger</span>
+        <h1>Sasuke<span>Uchiha</span></h1>
+        <hr class="divider">
+        <p>
+          Sasuke merupakan karakter yang menggambarkan sisi dirinya yang paling
+          kompleks. Ia melambangkan pergumulan antara ambisi dan keraguan, antara
+          keinginan untuk membuktikan diri dan kebutuhan untuk menemukan jati diri
+          yang sebenarnya. Di balik kesunyian dan keengganannya untuk membuka diri,
+          terdapat beban berat yang ia tanggung sejak masa lalu.
+        </p>
+        <p>
+          Dari Sasuke, ia belajar bahwa seseorang tidak selalu harus memahami dirinya
+          sepenuhnya untuk terus melangkah. Kadang pertumbuhan berarti berani
+          menghadapi luka, mengakui kesalahan, dan memilih jalan penebusan — tanpa
+          harus kehilangan rasa kemanusiaan.
+        </p>
+      </article>
+
+      <div class="profile-frame">
+        <img src="sasuke%20profil.jpeg" alt="Foto profil Sasuke Uchiha">
+        <p class="profile-caption">Sasuke Uchiha</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>Copyright © 2026 M. Nabil Rahmadhan. All rights reserved.</footer>
+
+  <a class="side-nav prev" href="../minato/minato.html" aria-label="Halaman sebelumnya: Minato">&larr;</a>
+  <a class="side-nav next" href="../reflection.html" aria-label="Halaman selanjutnya: Reflection">&rarr;</a>
+
+  <nav class="page-nav" aria-label="Navigasi halaman">
+    <a class="nav-arrow prev" href="../minato/minato.html"><span class="arrow">&larr;</span><span>Minato</span></a>
+    <a class="nav-arrow next" href="../reflection.html"><span>Reflection</span><span class="arrow">&rarr;</span></a>
+  </nav>
+
+  <div class="lightbox" id="profileLightbox" role="dialog" aria-modal="true" aria-label="Gambar profil diperbesar">
+    <button class="lightbox-close" data-close aria-label="Tutup gambar">&times;</button>
+    <figure>
+      <img id="lightboxImg" src="" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+  </div>
+
+  <script>
+    (function () {
+      const frames = document.querySelectorAll(".profile-frame");
+      const lightbox = document.getElementById("profileLightbox");
+      const lightboxImg = document.getElementById("lightboxImg");
+      const lightboxCaption = document.getElementById("lightboxCaption");
+      const closeBtn = lightbox.querySelector("[data-close]");
+
+      function openLightbox(img) {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = img.alt.replace("Foto profil ", "");
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      frames.forEach(function (frame) {
+        const img = frame.querySelector("img");
+        if (!img) return;
+        frame.setAttribute("tabindex", "0");
+        frame.setAttribute("role", "button");
+        frame.setAttribute("aria-label", "Perbesar " + img.alt);
+        frame.addEventListener("click", function () { openLightbox(img); });
+        frame.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openLightbox(img);
+          }
+        });
+      });
+
+      closeBtn.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+      });
+    })();
+  </script>
+
+</body>
+</html>

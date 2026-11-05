@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spider-Man | Portofolio M. Nabil Rahmadhan</title>
+  <meta name="description" content="Spider-Man — karakter favorit Nabil yang manusiawi, ceria, dan penuh tanggung jawab.">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body::before {
+      background-image: url('spiderman%20bg.jpeg');
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="../gwa/index.html" class="logo">Nabil<span>.</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="../gwa/index.html">Nabil</a></li>
+        <li><a href="spiderman.html" class="active">Spider-Man</a></li>
+        <li><a href="../batman/batman.html">Batman</a></li>
+        <li><a href="../kakashi/kakashi.html">Kakashi</a></li>
+        <li><a href="../minato/minato.html">Minato</a></li>
+        <li><a href="../sasuke/sasuke.html">Sasuke</a></li>
+        <li><a href="../reflection.html">Reflection</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="character-layout">
+      <article class="character-content">
+        <span class="eyebrow">The Friendly Hero</span>
+        <h1>Spider-Man<span>The Human Hero</span></h1>
+        <hr class="divider">
+        <p>
+          Spider-Man menjadi salah satu karakter favoritnya karena sosoknya yang
+          manusiawi. Di balik topengnya, ia bukan sekadar pahlawan super — ia adalah
+          anak muda biasa yang belajar bahwa kekuatan besar membawa tanggung jawab
+          yang besar. Ia tetap melangkah, tetap berjuang, dan tetap memilih berbuat
+          baik bahkan ketika dunia terlihat tidak mudah.
+        </p>
+        <p>
+          Dari Spider-Man, ia belajar tentang keberanian, ketekunan, dan empati.
+          Bahwa menjadi hebat tidak harus berarti selalu sempurna, tetapi tetap
+          manusiawi, tetap rendah hati, dan tidak pernah berhenti membantu sesama.
+        </p>
+      </article>
+
+      <div class="profile-frame">
+        <img src="spiderman%20profil.jpeg" alt="Foto profil Spider-Man">
+        <p class="profile-caption">Spider-Man</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>Copyright © 2026 M. Nabil Rahmadhan. All rights reserved.</footer>
+
+  <a class="side-nav prev" href="../gwa/index.html" aria-label="Halaman sebelumnya: Nabil">&larr;</a>
+  <a class="side-nav next" href="../batman/batman.html" aria-label="Halaman selanjutnya: Batman">&rarr;</a>
+
+  <nav class="page-nav" aria-label="Navigasi halaman">
+    <a class="nav-arrow prev" href="../gwa/index.html"><span class="arrow">&larr;</span><span>Nabil</span></a>
+    <a class="nav-arrow next" href="../batman/batman.html"><span>Batman</span><span class="arrow">&rarr;</span></a>
+  </nav>
+
+  <div class="lightbox" id="profileLightbox" role="dialog" aria-modal="true" aria-label="Gambar profil diperbesar">
+    <button class="lightbox-close" data-close aria-label="Tutup gambar">&times;</button>
+    <figure>
+      <img id="lightboxImg" src="" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+  </div>
+
+  <script>
+    (function () {
+      const frames = document.querySelectorAll(".profile-frame");
+      const lightbox = document.getElementById("profileLightbox");
+      const lightboxImg = document.getElementById("lightboxImg");
+      const lightboxCaption = document.getElementById("lightboxCaption");
+      const closeBtn = lightbox.querySelector("[data-close]");
+
+      function openLightbox(img) {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = img.alt.replace("Foto profil ", "");
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      frames.forEach(function (frame) {
+        const img = frame.querySelector("img");
+        if (!img) return;
+        frame.setAttribute("tabindex", "0");
+        frame.setAttribute("role", "button");
+        frame.setAttribute("aria-label", "Perbesar " + img.alt);
+        frame.addEventListener("click", function () { openLightbox(img); });
+        frame.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openLightbox(img);
+          }
+        });
+      });
+
+      closeBtn.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+      });
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kakashi Hatake | Portofolio M. Nabil Rahmadhan</title>
+  <meta name="description" content="Kakashi Hatake — tenang, penuh pertimbangan, dan mendedikasikan diri untuk melindungi yang ia sayangi.">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body::before {
+      background-image: url('kakashi%20bg.jpeg');
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="../gwa/index.html" class="logo">Nabil<span>.</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="../gwa/index.html">Nabil</a></li>
+        <li><a href="../spiderman/spiderman.html">Spider-Man</a></li>
+        <li><a href="../batman/batman.html">Batman</a></li>
+        <li><a href="kakashi.html" class="active">Kakashi</a></li>
+        <li><a href="../minato/minato.html">Minato</a></li>
+        <li><a href="../sasuke/sasuke.html">Sasuke</a></li>
+        <li><a href="../reflection.html">Reflection</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="character-layout">
+      <article class="character-content">
+        <span class="eyebrow">The Copy Ninja</span>
+        <h1>Kakashi<span>Hatake</span></h1>
+        <hr class="divider">
+        <p>
+          Kakashi merupakan karakter yang menggambarkan sisi dirinya yang tenang,
+          penuh pertimbangan, dan selalu berusaha melindungi orang-orang yang ia
+          sayangi. Di balik sikapnya yang santai, terdapat rasa tanggung jawab yang
+          besar serta pengalaman hidup yang membentuk kebijaksanaannya.
+        </p>
+        <p>
+          Dari Kakashi, ia belajar bahwa ketenangan bukan berarti ketidakpedulian,
+          melainkan cara untuk melihat masalah dengan jernih. Ia juga belajar bahwa
+          seorang mentor sejati bukan hanya kuat dalam pertempuran, tetapi juga kuat
+          dalam membimbing dan percaya pada potensi orang lain.
+        </p>
+      </article>
+
+      <div class="profile-frame">
+        <img src="kakashi%20profil.jpeg" alt="Foto profil Kakashi Hatake">
+        <p class="profile-caption">Kakashi Hatake</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>Copyright © 2026 M. Nabil Rahmadhan. All rights reserved.</footer>
+
+  <a class="side-nav prev" href="../batman/batman.html" aria-label="Halaman sebelumnya: Batman">&larr;</a>
+  <a class="side-nav next" href="../minato/minato.html" aria-label="Halaman selanjutnya: Minato">&rarr;</a>
+
+  <nav class="page-nav" aria-label="Navigasi halaman">
+    <a class="nav-arrow prev" href="../batman/batman.html"><span class="arrow">&larr;</span><span>Batman</span></a>
+    <a class="nav-arrow next" href="../minato/minato.html"><span>Minato</span><span class="arrow">&rarr;</span></a>
+  </nav>
+
+  <div class="lightbox" id="profileLightbox" role="dialog" aria-modal="true" aria-label="Gambar profil diperbesar">
+    <button class="lightbox-close" data-close aria-label="Tutup gambar">&times;</button>
+    <figure>
+      <img id="lightboxImg" src="" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+  </div>
+
+  <script>
+    (function () {
+      const frames = document.querySelectorAll(".profile-frame");
+      const lightbox = document.getElementById("profileLightbox");
+      const lightboxImg = document.getElementById("lightboxImg");
+      const lightboxCaption = document.getElementById("lightboxCaption");
+      const closeBtn = lightbox.querySelector("[data-close]");
+
+      function openLightbox(img) {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = img.alt.replace("Foto profil ", "");
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      frames.forEach(function (frame) {
+        const img = frame.querySelector("img");
+        if (!img) return;
+        frame.setAttribute("tabindex", "0");
+        frame.setAttribute("role", "button");
+        frame.setAttribute("aria-label", "Perbesar " + img.alt);
+        frame.addEventListener("click", function () { openLightbox(img); });
+        frame.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openLightbox(img);
+          }
+        });
+      });
+
+      closeBtn.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+      });
+    })();
+  </script>
+
+</body>
+</html>
